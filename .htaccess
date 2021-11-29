@@ -1,0 +1,22 @@
+# -------------------------------------------------------------------
+RewriteEngine On 
+# Options All -Indexes
+# Options -Indexes
+
+# -------------------------------------------------------------------
+# evitar el acceso al archivo .htaccess
+<files .htaccess>
+order allow,deny
+deny from all
+</files>
+
+# -------------------------------------------------------------------
+# RewriteBase /invoices/
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
+
+# -------------------------------------------------------------------
+# URL amigable con un solo parametro
+# RewriteCond %{REQUEST_URI} !index.html
+# RewriteRule ^([0-9a-zA-Z-_@./]+)$ index.php?route=$1 [QSA]
