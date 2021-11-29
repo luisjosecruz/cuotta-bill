@@ -1,9 +1,55 @@
 <?php
+
+// get database connection
+require_once "config/pdo.php";
+
+// get request uri
+$uri = $_SERVER['REQUEST_URI'];
+
+// divide uri
+$uri_parts = explode('/', $uri);
+array_shift($uri_parts);
+
+// get route
+$route = $uri_parts[1];
+
+switch($route){
+    case 'print':
+        $fact = (isset($uri_parts[2])) ? $uri_parts[2] : "";
+        require_once ('views/barras.php');
+
+        break;
+    case 'barcode':
+        $fact = (isset($uri_parts[2])) ? $uri_parts[2] : "";
+        require "views/barcode.php";
+
+        break;
+    case 'mandamientos':
+        $comunidad = (isset($uri_parts[2])) ? $uri_parts[2] : "";
+        require "views/print.php";
+        
+        break;
+    default:
+        echo "404 Not Found <hr>";
+        echo "Example Routes:<br>";
+        echo "- print<br>";
+        echo "- barcode<br>";
+        echo "- mandamientos<br>";
+}
+
+
+
+
+
+
+
+
+
+
 //for dev purposes
 //fire this in browser to get the code image
 /*
 use Ayeo\Barcode;
-
 require_once('vendor/autoload.php');
 
 $builder = new Barcode\Builder();
@@ -27,39 +73,5 @@ $builder->saveImage('41574197000082933902000006668996202103038020100112000001');
 $builder->output('41574197000082933902000000800096202105118020100112000002');
 $builder->output('41574197000082933902000000400096202105118020100112000001');
 */
-
-// capturando la URI
-
-require_once "config/pdo.php";
-
-$uri = $_SERVER['REQUEST_URI'];
-$uri_parts = explode('/', $uri);
-array_shift($uri_parts);
-$route = $uri_parts[1];
-
-switch($route){
-    case 'print':
-        $fact = (isset($uri_parts[2])) ? $uri_parts[2] : "";
-        require_once ('views/barras.php');
-
-        break;
-    case 'barcode':
-        $fact = (isset($uri_parts[2])) ? $uri_parts[2] : "";
-        require "views/barcode.php";
-
-        break;
-    case 'mandamientos':
-        $comunidad = (isset($uri_parts[2])) ? $uri_parts[2] : "";
-        require "views/userInv.php";
-        
-        break;
-    default:
-        echo "404 Not Found <hr>";
-        echo "Example Routes:<br>";
-        echo "- print<br>";
-        echo "- barcode<br>";
-        echo "- mandamientos<br>";
-}
-
 
 ?>

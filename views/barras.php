@@ -1,11 +1,3 @@
-<?php
-// obtener los códigos de las comunidades para llenar el select
-$sql = "SELECT * FROM comunidades";
-$query = $pdo->prepare($sql);
-$query->execute();
-$result = $query->fetchAll(PDO::FETCH_OBJ);
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,21 +5,14 @@ $result = $query->fetchAll(PDO::FETCH_OBJ);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
-    <title>Invoices</title>
-    <link rel="stylesheet" href="https://developer.cuotta.com/invoices/assets/style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <title>Printing Bills</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Quicksand:wght@700&display=swap">
+    <link rel="shortcut icon" href="assets/images/bill.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- <header>
-        <a href="#" class="home">HOME</a>
-    </header>
-    <main class="container">
-        <div class="box">
-            <img src="/invoices/barcode/<?=$fact;?>" >
-            <?php echo $fact; ?>
-        </div>
-    </main> -->
     <section class="options" id="options">
         <div class="options__content">
             <label for="community" class="label-inputs">
@@ -35,6 +20,12 @@ $result = $query->fetchAll(PDO::FETCH_OBJ);
                 <select name="community" id="community" class="input-select">
                     <option value="0" disabled selected>Seleccione</option>
                     <?php 
+                        // obtener los códigos de las comunidades para llenar el select
+                        $sql = "SELECT * FROM comunidades";
+                        $query = $pdo->prepare($sql);
+                        $query->execute();
+                        $result = $query->fetchAll(PDO::FETCH_OBJ);
+
                         if($query->rowCount() > 0){
                             foreach($result as $r){
                                 echo "<option value=".$r->comID.">".$r->comNombre."</option>: ";
@@ -69,10 +60,11 @@ $result = $query->fetchAll(PDO::FETCH_OBJ);
                 <span>Con Fondo</span>
                 <input type="radio" class="radio_bg" name="radio_bg" id="radio_bg_with" value="1">
             </label>
-            <button class="btn start-pages" id="startPages">START</button>
+            <button class="btn start-pages" id="startPages">Ver facturas</button>
+            <button class="btn btn-print" type="button" onclick="printing();">Print</button>
         </div>
     </section>
-    <button class="btn btn-print" type="button" onclick="printing();">Print</button>
+    <button class="btn btn-print" type="button" onclick="printing();"> <img src="assets/images/printer.png"> Print</button>
     <section class="pages">
         <!-- <article class="page" id="print">
             <div class="page__parts"></div>
@@ -80,6 +72,9 @@ $result = $query->fetchAll(PDO::FETCH_OBJ);
         </article> -->
     </section>
 
+    <div class="loader">
+        <div class="lds-dual-ring"></div>
+    </div>
 
     <script src="assets/scripts/jquery-3.6.0.min.js"></script>
     <script src="assets/scripts/qrcode.min.js"></script>
@@ -106,6 +101,8 @@ function startPages(){
         return false;
     }
     
+    $(".loader").css("display", "flex");
+    
     let data = { community: community.val(), month: month.val(), background: bg };
     
     $.ajax({
@@ -116,6 +113,9 @@ function startPages(){
             $(".pages").html("");
         },
         success: function(data){
+
+            $(".loader").css("display", "none");
+
             console.log("Showing data.");
 
             if(data === 'empty'){

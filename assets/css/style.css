@@ -1,48 +1,16 @@
 html{
     font-size: 62.5%;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 *,
 *:after,
 *:before{
     box-sizing: inherit;
+    font-family: inherit;
     padding: 0;
     margin: 0;
-}
-
-header{
-    width: 100%;
-    height: 60px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background: url(../assets/images/2.png);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px rgba(0,0,0,0.25);
-}
-
-header .home{
-    font-size: 2.5rem;
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #ffffff;
-    text-shadow: 0 0 5px rgba(0,0,0,0.25);
-    letter-spacing: 1.5px;
-}
-
-.container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: calc(100vh - 60px);
-    background: #f5f5f5;
-    margin-top: 60px;
 }
 
 .box{
@@ -66,31 +34,41 @@ header .home{
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    padding: 50px 200px;
+    padding: 20px 100px 20px;
     background: #f7f7f7;
     display: flex;
     align-items: flex-end;
-    justify-content: space-evenly;
+    justify-content: center;
+    border: 1px solid #eeeeee;
 }
 
 .btn{
-    padding: 10px 15px;
+    padding: 10px 20px;
     border-radius: 3px;
     border: 1px solid #35a256;
     font-size: 1.4rem;
     line-height: 1.6rem;
+    letter-spacing: 1px;
     background: #35a256;
     color: #eeeeee;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0,0,0,0.16);
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 500;
+    font-family: inherit;
 }
 
 .btn-print{
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+}
+
+.btn-print img {
+    padding-right: 10px;
 }
 
 .pages{
@@ -288,30 +266,33 @@ header .home{
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
+    padding: 0 25px;
 }
 
 .label-inputs span{
     display: block;
-    font-size: 1.5rem;
-    line-height: 1.7rem;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
     color: #202020;
     margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
 .label-inputs select{
-    width: 200px;
+    width: 210px;
     font-size: 1.4rem;
     line-height: 1.6rem;
     background: #cccccc;
     border-radius: 3px;
-    padding: 10px;
+    padding: 6px;
     background: #ffffff;
     border: 1px solid #cccccc;
     min-width: 100%;
     color: #202020;
     cursor: pointer;
     outline: none;
+    transition: all .26s;
 }
 
 .label-inputs select:focus{
@@ -320,7 +301,50 @@ header .home{
 }
 
 .radio_bg{
-    width: 40px;
-    height: 40px;
+    width: 26px;
+    height: 32px;
     cursor: pointer;
+}
+
+/*  -------------------------------------------------------------
+Preloader Animation
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.loader{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

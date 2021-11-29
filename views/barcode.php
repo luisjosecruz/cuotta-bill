@@ -1,20 +1,16 @@
 <?php 
 
-
-
 use Ayeo\Barcode;
 //require_once ('config/pdo.php');
 
 if(isset($fact) && !empty($fact)){
-
-    //echo " Numero: ".$fact;
-
-    /*$stmt = $pdo->query("SELECT mandamientos.mandBarras FROM mandamientos WHERE mandamientos.mandID = $fact");
+/*  
+    $stmt = $pdo->query("SELECT mandamientos.mandBarras FROM mandamientos WHERE mandamientos.mandID = $fact");
     while ($row = $stmt->fetch()) {
         $code = $row['mandBarras'];
     }
-
-    echo $code;*/
+    echo $code;
+*/
 
     //  construir el código de barras
     require_once('vendor/autoload.php');
