@@ -13,6 +13,9 @@ array_shift($uri_parts);
 // get route
 $route = $uri_parts[1];
 
+// url server
+$URLSERVER = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/$uri_parts[0]/";
+
 switch($route){
     case 'print':
         $fact = (isset($uri_parts[2])) ? $uri_parts[2] : "";

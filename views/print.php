@@ -9,12 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Quicksand:wght@700&display=swap">
-    <link rel="shortcut icon" href="../assets/images/bill.png" type="image/x-icon">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="shortcut icon" href="<?=$URLSERVER?>assets/images/bill.png" type="image/x-icon">
+    <link rel="stylesheet" href="<?=$URLSERVER?>assets/css/style.css">
 </head>
 <body>  
     <input type="hidden" value="<?=$comunidad;?>" id="community">
-    <button class="btn btn-print" type="button" onclick="printing();"> <img src="../assets/images/printer.png"> Print</button>
+    <button class="btn btn-print" type="button" onclick="printing();"> <img src="<?=$URLSERVER?>assets/images/printer.png"> Print</button>
     <section class="pages">
 
     </section>
@@ -23,8 +23,8 @@
         <div class="lds-dual-ring"></div>
     </div>
 
-    <script src="../assets/scripts/jquery-3.6.0.min.js"></script>
-    <script src="../assets/scripts/qrcode.min.js"></script>
+    <script src="<?=$URLSERVER?>assets/scripts/jquery-3.6.0.min.js"></script>
+    <script src="<?=$URLSERVER?>assets/scripts/qrcode.min.js"></script>
 </body>
 </html>
 
@@ -61,7 +61,7 @@ function startPages(){
     
     $.ajax({
         type: "POST",
-        url: "../ajax/getPages.php",
+        url: "<?=$URLSERVER?>ajax/getPages.php",
         data: data,
         success: function(data){
             
