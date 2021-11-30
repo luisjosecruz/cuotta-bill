@@ -37,7 +37,7 @@ $bg = ($background == 1 && $month == 0) ? "background:#ffffff url('https://devel
 
 $sql = "SELECT p.propID, p.propShortLnk, com.comID, com.comNombre, cont.contNombre, cont.contApellido, p.propDireccion1, mand.mandCorrelativo, mand.mandHash,
             DATE_FORMAT(mand.mandFechaInicio, '%d-%m-%Y') mandFechaInicio, mand.mandFechaInicio mandIni, mand.mandFechaFin mandFin, mand.mandFechaPago, DATE_FORMAT(mand.mandFechaFin, '%d-%m-%Y') mandDateFin, 
-            DATE_FORMAT(mand.mandFechaPago, '%d-%m-%Y') mandDatePago, com.comCuenta1Nombre, mand.mandBarras, mand.mandNPE, mand.mandSaldoInicial, mand.mandSaldoFinal
+            DATE_FORMAT(mand.mandFechaPago, '%d-%m-%Y') mandDatePago, com.comCta1, mand.mandBarras, mand.mandNPE, mand.mandSaldoInicial, mand.mandSaldoFinal
         FROM comunidades com
         INNER JOIN propiedades p ON p.comID = com.comID
         /*INNER JOIN contactos cont ON cont.contID = p.contFact*/
