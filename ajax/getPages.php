@@ -35,7 +35,7 @@ $html = '';
 $bg = ($background == 1) ? "background:#f5f5f5 url('https://developer.cuotta.com/bill/assets/images/bg2.jpg') no-repeat center;background-size:cover;" : "";
 $bg = ($background == 1 && $month == 0) ? "background:#ffffff url('https://developer.cuotta.com/bill/assets/images/bg_user.jpg') no-repeat center;background-size:cover;" : $bg;
 
-$sql = "SELECT p.propID, p.propAlias, p.propShortLnk, com.comID, com.comNombre, cont.contNombre, 
+$sql = "SELECT p.propID, p.propAlias, p.propShortLnk, com.comID, com.comNombre, cont.contNombre, mand.mandNumero,
             cont.contApellido, p.propDireccion1, mand.mandCorrelativo, mand.mandHash,
             DATE_FORMAT(mand.mandFechaInicio, '%d-%m-%Y') mandFechaInicio, mand.mandFechaInicio mandIni, mand.mandFechaFin mandFin, 
             mand.mandFechaPago, DATE_FORMAT(mand.mandFechaFin, '%d-%m-%Y') mandDateFin, 
@@ -48,7 +48,8 @@ $sql = "SELECT p.propID, p.propAlias, p.propShortLnk, com.comID, com.comNombre, 
         INNER JOIN mandamientos mand ON mand.propID = p.propID
         WHERE com.comID = $community
         AND v.vincOrden = 1
-        $data_month";
+        $data_month 
+        ORDER BY mand.mandNumero ASC";
 
 $query = $pdo->prepare($sql);
 $query->execute();
