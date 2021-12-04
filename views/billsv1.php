@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Quicksand:wght@700&display=swap">
     <link rel="shortcut icon" href="<?=$URLSERVER?>assets/images/bill.png" type="image/x-icon">
-    <link rel="stylesheet" href="<?=$URLSERVER?>assets/css/style.css">
+    <link rel="stylesheet" href="<?=$URLSERVER?>assets/css/stylev1.css">
 </head>
 <body>
     <section class="options" id="options">
@@ -64,7 +64,7 @@
             <button class="btn btn-print" type="button" onclick="printing();">Print</button>
         </div>
     </section>
-    <button class="btn btn-print" type="button" onclick="printing();"> <img src="assets/images/printer.png"> Print</button>
+    <button class="btn btn-print" type="button" onclick="printing();"> <img src="assets/images/printer.png"> Print v1</button>
     <section class="pages">
         <!-- <article class="page" id="print">
             <div class="page__parts"></div>
@@ -107,7 +107,7 @@ function startPages(){
     
     $.ajax({
         type: "POST",
-        url: "<?=$URLSERVER?>ajax/getPages.php",
+        url: "<?=$URLSERVER?>ajax/getPagesv1.php",
         data: data,
         beforeSend: function(){
             $(".pages").html("");

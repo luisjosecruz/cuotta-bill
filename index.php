@@ -19,7 +19,12 @@ $URLSERVER = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" :
 switch($route){
     case 'print':
         $fact = (isset($uri_parts[2])) ? $uri_parts[2] : "";
-        require_once ('views/barras.php');
+        require_once ('views/bills.php');
+
+        break;
+    case 'printv1':
+        $fact = (isset($uri_parts[2])) ? $uri_parts[2] : "";
+        require_once ('views/billsv1.php');
 
         break;
     case 'barcode':
@@ -36,6 +41,7 @@ switch($route){
         echo "404 Not Found <hr>";
         echo "Example Routes:<br>";
         echo "- print<br>";
+        echo "- printv1<br>";
         echo "- barcode<br>";
         echo "- mandamientos<br>";
 }
